@@ -12,7 +12,7 @@ import {
   orderBy,
   limit as firebaseLimit,
 } from 'firebase/firestore'
-import { db } from '../config/firebase'
+import { db, isDemo } from '../config/firebase'
 
 // Target configuration
 export const TARGET_AMOUNT = 120000
@@ -21,8 +21,7 @@ export const EVEN_INCOME = 3000
 export const START_DATE = new Date(2026, 5, 19) // June 19, 2026
 export const TOTAL_DAYS = 30
 
-const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
-const isMock = !apiKey || apiKey.includes('Dummy') || apiKey.includes('your_') || apiKey === '' || apiKey === 'undefined' || apiKey === 'demo-mode' || apiKey.startsWith('demo');
+const isMock = isDemo
 
 export const isDemoMode = () => isMock;
 
