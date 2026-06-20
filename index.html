@@ -22,10 +22,20 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     <script>
+      // Clear Service Worker registrations and caches to prevent bundle caching issues
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/moneym/sw.js')
-          .then(registration => console.log('ServiceWorker registration successful'))
-          .catch(err => console.error('ServiceWorker registration failed:', err))
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+          for (const registration of registrations) {
+            registration.unregister();
+          }
+        });
+      }
+      if ('caches' in window) {
+        caches.keys().then(names => {
+          for (const name of names) {
+            caches.delete(name);
+          }
+        });
       }
     </script>
   </body>
