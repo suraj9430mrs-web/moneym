@@ -8,7 +8,10 @@ const isDemoMode =
   apiKey.includes('Dummy') ||
   apiKey.includes('your_') ||
   apiKey === '' ||
-  apiKey === 'undefined'
+  apiKey === 'undefined' ||
+  apiKey === 'demo-mode' ||
+  apiKey === 'demo' ||
+  apiKey.startsWith('demo')
 
 let auth, db, googleProvider, app
 

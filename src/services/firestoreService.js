@@ -22,7 +22,7 @@ export const START_DATE = new Date(2026, 5, 19) // June 19, 2026
 export const TOTAL_DAYS = 30
 
 const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
-const isMock = !apiKey || apiKey.includes('Dummy') || apiKey.includes('your_') || apiKey === '';
+const isMock = !apiKey || apiKey.includes('Dummy') || apiKey.includes('your_') || apiKey === '' || apiKey === 'undefined' || apiKey === 'demo-mode' || apiKey.startsWith('demo');
 
 export const isDemoMode = () => isMock;
 

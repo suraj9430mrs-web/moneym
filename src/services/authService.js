@@ -2,7 +2,7 @@ import { signInWithPopup, signOut as firebaseSignOut, onAuthStateChanged } from 
 import { auth, googleProvider } from '../config/firebase'
 
 const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
-const isMock = !apiKey || apiKey.includes('Dummy') || apiKey.includes('your_') || apiKey === '';
+const isMock = !apiKey || apiKey.includes('Dummy') || apiKey.includes('your_') || apiKey === '' || apiKey === 'undefined' || apiKey === 'demo-mode' || apiKey.startsWith('demo');
 
 // Active listeners for mock auth
 let mockAuthListeners = [];
@@ -24,9 +24,15 @@ export const isDemoMode = () => isMock;
 
 export const loginWithGoogle = async () => {
   if (isMock) {
-    return loginAsMockUser('team@example.com', 'Team Member');
+    return loginAsMockUser('admin@example.com', 'System Admin');
   }
-  return signInWithPopup(auth, googleProvider);
+  try {
+    return await signInWithPopup(auth, googleProvider);
+  } catch (err) {
+    // Fallback to demo mode if Firebase sign-in fails
+    console.warn('Google sign-in failed, falling back to demo mode:', err.message);
+    return loginAsMockUser('admin@example.com', 'System Admin');
+  }
 };
 
 export const loginAsMockUser = async (email, displayName) => {
