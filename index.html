@@ -7,9 +7,9 @@
     <meta name="theme-color" content="#0a0e27" />
     
     <!-- PWA Meta Tags -->
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/moneym/manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="/moneym/favicon.svg" />
+    <link rel="apple-touch-icon" href="/moneym/apple-touch-icon.png" />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,7 +23,7 @@
     <script type="module" src="/src/main.jsx"></script>
     <script>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('/moneym/sw.js')
           .then(registration => console.log('ServiceWorker registration successful'))
           .catch(err => console.error('ServiceWorker registration failed:', err))
       }
